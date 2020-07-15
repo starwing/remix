@@ -25,6 +25,12 @@ defmodule Remix do
       GenServer.start_link(__MODULE__, %{}, name: Remix.Worker)
     end
 
+    @impl true
+    def init(args) do
+      {:ok, args}
+    end
+
+    @impl true
     def handle_info(:poll_and_reload, state) do
       paths = Application.get_all_env(:remix)[:paths]
 
